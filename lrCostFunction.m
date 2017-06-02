@@ -35,18 +35,18 @@ grad = zeros(size(theta));
 %           temp(1) = 0;   % because we don't add anything for j = 0  
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
+% modified theta_mod, theta_mod = theta and theta_mod(1)=0
+theta_mod = theta;
+theta_mod(1) = 0;
 
+% calculate regularized cost function with not regularized theta_0
+J = (1/m)*((log(sigmoid(X*theta)))'*(-y)-(log(1.-sigmoid(X*theta)))'*(1.-y)) ... 
+    +(lambda/(2*m))*(theta_mod'*theta_mod);
 
-
-
-
-
-
-
-
+% calculate regularized gradient with not regularized theta_0
+grad = (1/m)*(X'*(sigmoid(X*theta)-y)) ... 
+    +(lambda/m)*theta_mod;
 
 % =============================================================
-
-grad = grad(:);
 
 end
