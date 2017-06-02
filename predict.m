@@ -21,12 +21,15 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% Add ones to the X data matrix
+X = [ones(m, 1) X];
 
+hidden_layer = X*Theta1';
+hidden_layer_prob = [ones(m, 1), sigmoid(hidden_layer)];
+probabilty = sigmoid(hidden_layer_prob*Theta2');
 
-
-
-
-
+[M, I] = max(probabilty, [], 2);
+p = I;
 
 
 % =========================================================================
